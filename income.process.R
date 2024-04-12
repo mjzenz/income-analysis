@@ -28,7 +28,7 @@ income.tax <- income.tax.data |>
 ggplot(income.tax,  aes(x = Year)) + 
   geom_line(aes(y = `Income (2008 Dollars)`), color = "blue") +
   geom_line(aes(y = `Income`), linetype = 2) +
-  scale_y_continuous(labels = scales::dollar) +
+  scale_y_continuous(labels = scales::dollar, limits = c(0,200000)) +
   labs(title = "Combined Income",
        y = "Income",
        x = "Year") +
@@ -64,6 +64,7 @@ ggplot(income.tax,  aes(x = Year)) +
   
 
 ggplot(income.tax, aes(x = Year, y = `Fed Tax Rate`)) + geom_line()
+
 
 
 
