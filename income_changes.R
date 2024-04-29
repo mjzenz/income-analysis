@@ -5,7 +5,7 @@ library(quantmod)
 library(zoo)
 
 income.changes.data <- read.csv("Income_History.csv")
-income.changes.data$Date = as.Date(income.changes.data$Date)
+income.changes.data$Date <- as.Date(income.changes.data$Date)
 
 getSymbols("CPIAUCSL", src='FRED') 
 
