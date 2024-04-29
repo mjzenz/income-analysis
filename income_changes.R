@@ -36,7 +36,7 @@ ggplot(pay.data,  aes(x = Date)) +
   geom_line(aes(y = `Pay`), linetype = 2) +
   scale_y_continuous(labels = scales::dollar, limits = c(50000,120000)) +
   labs(title = "Nominal vs. Real Pay",
-       subtitle = "Red lines are real pay at performance raises",
+       #subtitle = "Red lines are real pay at performance raises",
        y = "Pay",
        x = "Date") +
   annotate("text", 
@@ -46,10 +46,10 @@ ggplot(pay.data,  aes(x = Date)) +
   annotate("text", 
            x = as.Date("2022-12-01"), 
            y = 108000, label = "Nominal Dollars") +
-  geom_hline(yintercept = vlines[1], linetype = 1, color = "red", 
-             alpha = .2) +
-  geom_hline(yintercept = vlines[2], linetype = 1, color = "red", 
-             alpha = .2) +
+ # geom_hline(yintercept = vlines[1], linetype = 1, color = "red", 
+  #           alpha = .2) +
+  #geom_hline(yintercept = vlines[2], linetype = 1, color = "red", 
+  #           alpha = .2) +
   theme_minimal() 
 
 
