@@ -103,8 +103,13 @@ ggplot(pay.data,  aes(x = Date)) +
   theme(legend.position = "none")
 
 
-
-
+#Calculate real salary growth by year
+pay.data |>
+  filter(month(Date) == 8) |>
+  select(Date, `Pay (2019 Dollars)`) |>
+  mutate(yoy = (`Pay (2019 Dollars)` - lag(`Pay (2019 Dollars)`))/lag(`Pay (2019 Dollars)`)) |>
+  ggplot(aes(x = Date, y = yoy)) +
+  geom_line() 
 ## inflation exploration
 
 ## Calculate yoy inflation growth from CPIAUCSL
