@@ -5,14 +5,14 @@ library(ggplot2)
 
 NUM_YEARS <- 20
 INITIAL_PORTFOLIO_VALUE <- 700
-YEARLY_INVESTMENT <- 0
-NUM_SIMULATIONS <- 10
+YEARLY_INVESTMENT <- 80
+NUM_SIMULATIONS <- 2000
 
 ####
 #Annual return
 
 for (SIM in 1:NUM_SIMULATIONS){
-  yearly.return <-rnorm(NUM_YEARS,  mean = .07, sd = .09)
+  yearly.return <-rnorm(NUM_YEARS,  mean = .04, sd = .05)
   
 if(SIM == 1){
   
@@ -54,11 +54,22 @@ for (year in 1:NUM_YEARS){
   
 }
 
+print(SIM)
+
 }
 
 
+### Summary Statistics
 
+distribution.stats <- portfolio_values %>%
+  group_by(Year) %>%
+  summarize(max95 = quantile(Value, prob = .95), 
+            q3 = quantile(Value, prob = .75),
+            median = median(Value), 
+            q1 = quantile(Value, prob = .25),
+            min95 = quantile(Value, prob = .05))
 
-ggplot(yearly.return, aes(x = year, y = return)) +
-  geom_line()
+ggplot(distribution.stats, aes(x = Year, y = median, group = SIM)) +
+  geom_ribbon(aes(ymin = q1, ymax = q3))+
+  geom_line(show.legend = FALSE)
 
